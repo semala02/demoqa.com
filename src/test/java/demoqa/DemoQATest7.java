@@ -514,7 +514,9 @@ public class DemoQATest7 {
             			   if(s_city1.equals(s_city)){
             				  if(s_province1.equals(s_province1)){
             					 if(s_postal1.equals(s_postal)){
-            						allfieldsreturn=true;
+            						if(s_phone1.equals(s_phone)){
+            						   allfieldsreturn=true;	
+            						}
             					 }
             				  }
             			   }

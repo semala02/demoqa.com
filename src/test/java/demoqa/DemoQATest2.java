@@ -2,6 +2,7 @@ package demoqa;
 
 import static org.junit.Assert.*;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.AfterClass;
@@ -14,6 +15,8 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -222,6 +225,7 @@ public class DemoQATest2 {
 	       }
 	       Assert.assertTrue("Double rating failed", rateddouble);
 	}
+	
 	@Test
 	public void testcase9_d_facebook_i_ii(){
 		   WebDriverWait wait = new WebDriverWait(driver, 15);
@@ -231,21 +235,30 @@ public class DemoQATest2 {
            iphone5.click();
               wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//iframe[@title='fb:like Facebook Social Plugin']")));
               wait.pollingEvery(100, TimeUnit.MILLISECONDS);
-              //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("u_0_1")));
-              //wait.pollingEvery(100, TimeUnit.MILLISECONDS);
-           WebElement facebook = driver.findElement(By.xpath("//button[@title='Like']"));
-           //WebElement facebook=driver.findElement(By.xpath("//iframe[@title='fb:like Facebook Social Plugin']"));
+           
+           Actions fbaction=new Actions(driver);
            String mainwindow=driver.getWindowHandle();
-           facebook.click();
-           String newwindow=driver.getWindowHandle();
-           driver.switchTo().window(newwindow);
+           WebElement facebook=driver.findElement(By.xpath("//iframe[@title='fb:like Facebook Social Plugin']"));
+           fbaction.click(facebook).build().perform();
+           Set<String> handles=driver.getWindowHandles();
+           String newwindow;
+           for(String handleid:handles){
+        	   driver.switchTo().window(handleid);
+        	   if(driver.getTitle().contains("Facebook")){
+        		  newwindow=handleid;
+        		  break;
+        	   }
+           }
               wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@value='Avbryt']")));
               wait.pollingEvery(100, TimeUnit.MILLISECONDS);
 
            WebElement avbryt=driver.findElement(By.xpath("//input[@value='Avbryt']"));
            avbryt.click();
-           driver.switchTo().window(mainwindow);
-           boolean numlikesshown=driver.findElement(By.cssSelector("div.pluginCountButton.pluginCountNum")).isDisplayed();
+           driver.switchTo().frame(facebook.getAttribute("name"));
+           
+           //String numlikes=fbaction.moveToElement(driver.findElement(By.cssSelector("div.pluginCountButton.pluginCountNum"))).toString();
+           boolean numlikesshown=driver.findElement(By.className("pluginCountNum")).isDisplayed();
+           //System.out.println("Numblikes:"+numlikes);
 	       Assert.assertTrue("Num likes not shown", numlikesshown);
 	}
 

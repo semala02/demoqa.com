@@ -168,8 +168,10 @@ public class DemoQATest7 {
 		          wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("wpsc_totals")));
 		          wait.pollingEvery(100, TimeUnit.MILLISECONDS);
 		       WebElement firstname = driver.findElement(By.id("wpsc_checkout_form_2"));
+		       firstname.clear();
 		       firstname.sendKeys("Martin");
 		       WebElement lastname = driver.findElement(By.id("wpsc_checkout_form_3"));
+		       lastname.clear();
 		       lastname.sendKeys("Landhage");
 		       WebElement purchase=driver.findElement(By.xpath("//input[@value='Purchase']"));
 		       purchase.click();
@@ -236,11 +238,14 @@ public class DemoQATest7 {
 		          wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("wpsc_totals")));
 		          wait.pollingEvery(100, TimeUnit.MILLISECONDS);
 		       WebElement firstname = driver.findElement(By.id("wpsc_checkout_form_2"));
+		       firstname.clear();
 		       firstname.sendKeys("Martin");
 		       WebElement lastname = driver.findElement(By.id("wpsc_checkout_form_3"));
+		       lastname.clear();
 		       lastname.sendKeys("Landhage");
 		       WebElement purchase=driver.findElement(By.xpath("//input[@value='Purchase']"));
 		       WebElement email=driver.findElement(By.id("wpsc_checkout_form_9"));
+		       email.clear();
 		       email.sendKeys("martin.landhage");
 		       purchase.click();
 		       errorgiven=false;
@@ -307,23 +312,31 @@ public class DemoQATest7 {
 		          wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("wpsc_totals")));
 		          wait.pollingEvery(100, TimeUnit.MILLISECONDS);
 		       WebElement firstname = driver.findElement(By.id("wpsc_checkout_form_2"));
+		       firstname.clear();
 		       firstname.sendKeys("Martin");
 		       WebElement lastname = driver.findElement(By.id("wpsc_checkout_form_3"));
+		       lastname.clear();
 		       lastname.sendKeys("Landhage");
 		       //WebElement purchase=driver.findElement(By.xpath("//input[@value='Purchase']"));
 		       WebElement email=driver.findElement(By.id("wpsc_checkout_form_9"));
+		       email.clear();
 		       email.sendKeys("martin.landhage@gmail.com");
 		       WebElement adress=driver.findElement(By.id("wpsc_checkout_form_4"));
+		       adress.clear();
 		       adress.sendKeys("Dannemoragatan 14");
 		       WebElement city=driver.findElement(By.id("wpsc_checkout_form_5"));
+		       city.clear();
 		       city.sendKeys("Stockholm");
 		       WebElement province=driver.findElement(By.id("wpsc_checkout_form_6"));
+		       province.click();
 		       province.sendKeys("Stockholm");
 		       Select select2=new Select(driver.findElement(By.id("wpsc_checkout_form_7")));
 		       select2.selectByValue("SE");
 		       WebElement postal=driver.findElement(By.id("wpsc_checkout_form_8"));
+		       postal.clear();
 		       postal.sendKeys("11344");
 		       WebElement phone=driver.findElement(By.id("wpsc_checkout_form_18"));
+		       phone.clear();
 		       phone.sendKeys("+468331705");
 		       WebElement shippingsame=driver.findElement(By.id("shippingSameBilling"));
 		       shippingsame.click();
@@ -409,6 +422,7 @@ public class DemoQATest7 {
 	       Assert.assertTrue("Info not activated", infoact);
 	       Assert.assertTrue("Final activated", finalnotact);
     }
+    
     @Test
     public void testcase6_f_go_back_continue(){
 		   WebElement search = driver.findElement(By.xpath("//input[@class='search']"));
@@ -461,22 +475,30 @@ public class DemoQATest7 {
 			   String s_phone="+468331705";
 
 		       WebElement firstname = driver.findElement(By.id("wpsc_checkout_form_2"));
+		       firstname.clear();
 		       firstname.sendKeys(s_firstname);
 		       WebElement lastname = driver.findElement(By.id("wpsc_checkout_form_3"));
+		       lastname.clear();
 		       lastname.sendKeys(s_lastname);
 		       WebElement email=driver.findElement(By.id("wpsc_checkout_form_9"));
+		       email.clear();
 		       email.sendKeys(s_email);
 		       WebElement adress=driver.findElement(By.id("wpsc_checkout_form_4"));
+		       adress.clear();
 		       adress.sendKeys(s_adress);
 		       WebElement city=driver.findElement(By.id("wpsc_checkout_form_5"));
+		       city.clear();
 		       city.sendKeys(s_city);
 		       WebElement province=driver.findElement(By.id("wpsc_checkout_form_6"));
+		       province.clear();
 		       province.sendKeys(s_province);
 		       Select select2=new Select(driver.findElement(By.id("wpsc_checkout_form_7")));
 		       select2.selectByValue("SE");
 		       WebElement postal=driver.findElement(By.id("wpsc_checkout_form_8"));
+		       postal.clear();
 		       postal.sendKeys(s_postal);
 		       WebElement phone=driver.findElement(By.id("wpsc_checkout_form_18"));
+		       phone.clear();
 		       phone.sendKeys(s_phone);
 		       WebElement shippingsame=driver.findElement(By.id("shippingSameBilling"));
 		       shippingsame.click();
@@ -492,21 +514,29 @@ public class DemoQATest7 {
 			   continuebottom2.click();
 			   //Verify same values
 		       WebElement firstname1 = driver.findElement(By.id("wpsc_checkout_form_2"));
-		       String s_firstname1=firstname1.getText();
+		       String s_firstname1=firstname1.getAttribute("value");
+		       //System.out.println("Returned fistname:"+s_firstname1);
 		       WebElement lastname1 = driver.findElement(By.id("wpsc_checkout_form_3"));
-		       String s_lastname1=lastname1.getText();
+		       String s_lastname1=lastname1.getAttribute("value");
+		       //System.out.println("Returned lastname:"+s_lastname1);
 		       WebElement email1=driver.findElement(By.id("wpsc_checkout_form_9"));
-		       String s_email1=email1.getText();
+		       String s_email1=email1.getAttribute("value");
+		       //System.out.println("Returned email:"+s_email1);
 		       WebElement adress1=driver.findElement(By.id("wpsc_checkout_form_4"));
-		       String s_adress1=adress1.getText();
+		       String s_adress1=adress1.getAttribute("value");
+		       //System.out.println("Returned address:"+s_adress1);
 		       WebElement city1=driver.findElement(By.id("wpsc_checkout_form_5"));
-		       String s_city1=city1.getText();
+		       String s_city1=city1.getAttribute("value");
+		       //System.out.println("Returned city:"+s_city1);
 		       WebElement province1=driver.findElement(By.id("wpsc_checkout_form_6"));
-		       String s_province1=province1.getText();
+		       String s_province1=province1.getAttribute("value");
+		       //System.out.println("Returned province:"+s_province1);
 		       WebElement postal1=driver.findElement(By.id("wpsc_checkout_form_8"));
-		       String s_postal1=postal1.getText();
+		       String s_postal1=postal1.getAttribute("value");
+		       //System.out.println("Returned postal:"+s_postal1);
 		       WebElement phone1=driver.findElement(By.id("wpsc_checkout_form_18"));
-		       String s_phone1=phone1.getText();
+		       String s_phone1=phone1.getAttribute("value");
+		       //System.out.println("Returned phone:"+s_phone1);
                if(s_firstname1.equals(s_firstname)){
             	  if(s_lastname1.equals(s_lastname)){
             		 if(s_email1.equals(s_email)){
@@ -524,6 +554,13 @@ public class DemoQATest7 {
             		 }
             	  }
                }
+		       try {
+				    Thread.sleep(5000);
+			   } catch (InterruptedException e) {
+				        // TODO Auto-generated catch block
+				        e.printStackTrace();
+			   }
+
 		       WebElement goback1=driver.findElement(By.className("step1"));
 		       goback1.click();
 		       try {
@@ -538,6 +575,7 @@ public class DemoQATest7 {
 		   }
 	       Assert.assertTrue("All filds not returned", allfieldsreturn);
     }
+
     @Test
     public void testcase7_g_purchase(){
 		   WebElement search = driver.findElement(By.xpath("//input[@class='search']"));
@@ -589,23 +627,31 @@ public class DemoQATest7 {
 		       String s_postal="11344";
 		       String s_phone="+468331705";
 		       WebElement firstname = driver.findElement(By.id("wpsc_checkout_form_2"));
+		       firstname.clear();
 		       firstname.sendKeys(s_firstname);
 		       WebElement lastname = driver.findElement(By.id("wpsc_checkout_form_3"));
+		       lastname.clear();
 		       lastname.sendKeys(s_lastname);
 		       //WebElement purchase=driver.findElement(By.xpath("//input[@value='Purchase']"));
 		       WebElement email=driver.findElement(By.id("wpsc_checkout_form_9"));
+		       email.clear();
 		       email.sendKeys(s_email);
 		       WebElement adress=driver.findElement(By.id("wpsc_checkout_form_4"));
+		       adress.clear();
 		       adress.sendKeys(s_adress);
 		       WebElement city=driver.findElement(By.id("wpsc_checkout_form_5"));
+		       city.clear();
 		       city.sendKeys(s_city);
 		       WebElement province=driver.findElement(By.id("wpsc_checkout_form_6"));
+		       province.clear();
 		       province.sendKeys(s_province);
 		       Select select2=new Select(driver.findElement(By.id("wpsc_checkout_form_7")));
 		       select2.selectByValue("SE");
 		       WebElement postal=driver.findElement(By.id("wpsc_checkout_form_8"));
+		       postal.clear();
 		       postal.sendKeys(s_postal);
 		       WebElement phone=driver.findElement(By.id("wpsc_checkout_form_18"));
+		       phone.clear();
 		       phone.sendKeys(s_phone);
 		       WebElement shippingsame=driver.findElement(By.id("shippingSameBilling"));
 		       shippingsame.click();
@@ -621,4 +667,5 @@ public class DemoQATest7 {
 		   }
 	       Assert.assertTrue("Final page not displayed", confirm);
     }
+
 }

@@ -88,35 +88,30 @@ public class DemoQATest5 {
 		   header.click();
 	          wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h1.prodtitle")));
 	          wait.pollingEvery(100, TimeUnit.MILLISECONDS);
-        WebElement tocart=driver.findElement(By.xpath("//input[@value='Add To Cart']"));
-        tocart.click();
-        try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-             // wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("go_to_checkout")));
-	         // wait.pollingEvery(100, TimeUnit.MILLISECONDS);
-     WebElement continueshop = driver.findElement(By.xpath("//div[@class='popup']/div[@class='group']/a[2]"));
-     continueshop.click();
-     WebElement shoppingcart = driver.findElement(By.cssSelector("a.cart_icon"));
-     shoppingcart.click();
+           WebElement tocart=driver.findElement(By.xpath("//input[@value='Add To Cart']"));
+           tocart.click();
+              wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("go_to_checkout")));
+	          wait.pollingEvery(100, TimeUnit.MILLISECONDS);
+           WebElement continueshop = driver.findElement(By.xpath("//a[@href='#' and @class='continue_shopping']"));
+	       //WebElement continueshop=driver.findElement(By.xpath("//*[@id='fancy_notification_content']/a[2]"));
+           continueshop.click();
+           WebElement shoppingcart = driver.findElement(By.cssSelector("a.cart_icon"));
+           shoppingcart.click();
 	          wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@value='Remove']")));
 	          wait.pollingEvery(100, TimeUnit.MILLISECONDS);
-     WebElement remove=driver.findElement(By.xpath("//input[@value='Remove']"));
-     remove.click();
-     boolean removed2=false;
-     try{
-  	   boolean removed=driver.findElement(By.xpath("//input[@value='Remove']")).isDisplayed();
-  	   if (removed){
-  		   System.out.println("Product remove faied");
-  	   }
-     }catch (Exception e){
-  	   removed2=true;
-     }
-     Assert.assertTrue("iPhone 5 not removed", removed2);
-
+           WebElement remove=driver.findElement(By.xpath("//input[@value='Remove']"));
+           remove.click();
+           boolean removed2=false;
+           try{
+  	           boolean removed=driver.findElement(By.xpath("//input[@value='Remove']")).isDisplayed();
+  	           if (removed){
+  		           System.out.println("Product remove faied");
+  	           }
+           }catch (Exception e){
+  	               removed2=true;
+           }
+           Assert.assertTrue("iPhone 5 not removed", removed2);
+         
 	}
 
 }
